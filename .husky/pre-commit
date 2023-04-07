@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+git config core.fileMode false
+
+pnpm pretty-quick --staged
+
+pnpm run lint
