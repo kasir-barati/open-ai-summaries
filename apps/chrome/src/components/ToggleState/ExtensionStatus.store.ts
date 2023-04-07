@@ -1,13 +1,6 @@
 import { action, atom } from 'nanostores';
 
 const extensionStatus = atom<boolean>(false);
-const toggleDialog = atom<boolean>(false);
-const openDialog = action(toggleDialog, 'openDialog', (store) => {
-    store.set(true);
-});
-const closeDialog = action(toggleDialog, 'closeDialog', (store) => {
-    store.set(false);
-});
 const enableExtension = action(
     extensionStatus,
     'enableExtension',
@@ -25,13 +18,10 @@ const disableExtension = action(
 
 export const ExtensionStateStore = {
     states: {
-        toggleDialog,
         extensionStatus,
     },
     actions: {
         enableExtension,
         disableExtension,
-        openDialog,
-        closeDialog,
     },
 };

@@ -5,48 +5,25 @@ describe('ExtensionStateStore', () => {
     let { actions, states } = ExtensionStateStore;
 
     afterEach(async () => {
-        cleanStores(states.extensionStatus, states.toggleDialog);
+        cleanStores(states.extensionStatus);
         states.extensionStatus.set(false);
-        states.toggleDialog.set(false);
     });
 
-    describe('extensionStatus', () => {
-        beforeEach(() => {
-            keepMount(states.extensionStatus);
-        });
-
-        it('should enable extension', async () => {
-            actions.enableExtension();
-            await allTasks();
-
-            expect(states.extensionStatus.get()).toBeTruthy();
-        });
-
-        it('should disable extension', async () => {
-            actions.disableExtension();
-            await allTasks();
-
-            expect(states.extensionStatus.get()).toBeFalsy();
-        });
+    beforeEach(() => {
+        keepMount(states.extensionStatus);
     });
 
-    describe('toggleDialog', () => {
-        beforeEach(() => {
-            keepMount(states.toggleDialog);
-        });
+    it('should enable extension', async () => {
+        actions.enableExtension();
+        await allTasks();
 
-        it('should close dialog', async () => {
-            actions.closeDialog();
-            await allTasks();
+        expect(states.extensionStatus.get()).toBeTruthy();
+    });
 
-            expect(states.toggleDialog.get()).toBeFalsy();
-        });
+    it('should disable extension', async () => {
+        actions.disableExtension();
+        await allTasks();
 
-        it('should open dialog', async () => {
-            actions.openDialog();
-            await allTasks();
-
-            expect(states.toggleDialog.get()).toBeTruthy();
-        });
+        expect(states.extensionStatus.get()).toBeFalsy();
     });
 });
