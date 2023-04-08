@@ -1,24 +1,16 @@
 import {
     Alert,
-    AlertColor,
+    Slide,
     Snackbar,
     SnackbarCloseReason,
 } from '@mui/material';
+import { TransitionProps } from '@mui/material/transitions';
 import { useStore } from '@nanostores/react';
-import { useEffect } from 'react';
 import { NotificationStateStore } from './Notification.store';
 
-export function Notification({
-    text,
-    color,
-    autoHideDuration = 6000,
-}: {
-    text: string;
-    color: AlertColor;
-    autoHideDuration?: number;
-}) {
+export function Notification() {
     const { actions, states } = NotificationStateStore;
-    const notificationState = useStore(states.notificationState);
+    const notificationState = useStore(states.notification);
     const handleClose = (
         event: Event | React.SyntheticEvent<any, Event>,
         reason?: SnackbarCloseReason,
@@ -29,23 +21,28 @@ export function Notification({
         actions.closeNotification();
     };
 
-    useEffect(() => {
-        actions.showNotification();
-    }, []);
+    if (!notificationState) {
+        return <></>;
+    }
 
     return (
         <Snackbar
-            open={notificationState}
-            autoHideDuration={autoHideDuration}
+            open={notificationState.open}
+            autoHideDuration={notificationState.autoHideDuration}
             onClose={handleClose}
+            TransitionComponent={TransitionLeftDirection}
         >
             <Alert
                 onClose={handleClose}
-                severity={color}
+                severity={notificationState.color}
                 sx={{ width: '100%' }}
             >
-                {text}
+                {notificationState.text}
             </Alert>
         </Snackbar>
     );
+}
+
+function TransitionLeftDirection(props: TransitionProps) {
+    return <Slide {...props} direction="left" />;
 }

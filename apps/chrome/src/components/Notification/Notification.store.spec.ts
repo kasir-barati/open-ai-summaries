@@ -1,28 +1,35 @@
 import { allTasks, cleanStores, keepMount } from 'nanostores';
-import { NotificationStateStore } from './Notification.store';
+import {
+    Notification,
+    NotificationStateStore,
+} from './Notification.store';
 
 describe('NotificationStateStore', () => {
     const { actions, states } = NotificationStateStore;
 
     beforeEach(() => {
-        keepMount(states.notificationState);
+        keepMount(states.notification);
     });
     afterEach(() => {
-        cleanStores(states.notificationState);
-        states.notificationState.set(undefined);
+        cleanStores(states.notification);
+        states.notification.set(undefined);
     });
 
     it('should show notification', async () => {
-        actions.showNotification();
+        const notification: Notification = {
+            text: 'Something went wrong, please try again ...',
+            color: 'error',
+        };
+        actions.showNotification(notification);
         await allTasks();
 
-        expect(states.notificationState.get()).toBeTruthy();
+        expect(states.notification.get()).toMatchObject(notification);
     });
 
     it('should close notification', async () => {
         actions.closeNotification();
         await allTasks();
 
-        expect(states.notificationState.get()).toBeFalsy();
+        expect(states.notification.get()).toBeUndefined();
     });
 });

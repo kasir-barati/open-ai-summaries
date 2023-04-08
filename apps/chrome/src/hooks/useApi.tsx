@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Notification } from '../components/Notification/Notification.component';
+import { NotificationStateStore } from '../components/Notification/Notification.store';
 
 export function useApi() {
     const api = axios.create({
@@ -12,10 +12,11 @@ export function useApi() {
 }
 
 function responseErrorHandler(error) {
-    <Notification
-        color="error"
-        text="Something went wrong, please try again ..."
-    />;
+    const { actions } = NotificationStateStore;
 
+    actions.showNotification({
+        color: 'error',
+        text: 'Something went wrong, please try again ...',
+    });
     return Promise.reject(error);
 }
