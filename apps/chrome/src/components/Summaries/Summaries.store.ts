@@ -1,7 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { action, atom } from 'nanostores';
+import { Summary } from 'shared/types/summary';
 
-const summaries = atom<{ highlight: string; summary: string }[]>([]);
+const summaries = atom<Summary[]>([]);
 const accordionIndex = atom<number | undefined>();
 const setAccordionIndex = action(
     accordionIndex,

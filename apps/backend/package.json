@@ -2,8 +2,8 @@
     "name": "open-ai-summaries",
     "version": "0.0.1",
     "description": "",
-    "author": "",
-    "private": true,
+    "author": "kasir-barati",
+    "private": false,
     "license": " MIT",
     "scripts": {
         "build": "nest build",
@@ -20,8 +20,15 @@
     },
     "dependencies": {
         "@nestjs/common": "^9.0.0",
+        "@nestjs/config": "^2.3.1",
         "@nestjs/core": "^9.0.0",
+        "@nestjs/mongoose": "^9.2.2",
         "@nestjs/platform-express": "^9.0.0",
+        "@nestjs/swagger": "^6.3.0",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.14.0",
+        "cookie-parser": "^1.4.6",
+        "helmet": "^6.0.1",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.2.0"
     },

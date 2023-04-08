@@ -2,6 +2,8 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "target": "ESNext",
+        "outDir": "./dist",
+        "baseUrl": "./",
         "useDefineForClassFields": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "allowJs": false,
@@ -15,6 +17,5 @@
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
