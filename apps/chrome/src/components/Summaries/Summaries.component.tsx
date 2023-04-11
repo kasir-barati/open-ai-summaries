@@ -29,6 +29,9 @@ export function Summaries() {
 
     useEffect(() => {
         actions.fetchSummaries(api);
+        window.addEventListener('mouseup', (_event: MouseEvent) => {
+            console.log(window.getSelection().toString());
+        });
     }, []);
 
     return (

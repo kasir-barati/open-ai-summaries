@@ -44,5 +44,7 @@ export function Notification() {
 }
 
 function TransitionLeftDirection(props: TransitionProps) {
+    // FIXME: https://github.com/mui/material-ui/issues/36806
+    // @ts-ignore
     return <Slide {...props} direction="left" />;
 }
