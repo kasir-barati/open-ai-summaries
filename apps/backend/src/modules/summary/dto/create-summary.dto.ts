@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 import { IsString, MinLength } from 'class-validator';
 import { Summary } from 'shared/types/summary';
 
@@ -11,5 +12,6 @@ export class CreateSummaryDto
     })
     @IsString()
     @MinLength(2)
+    @Transform((param) => param.value.replace(/\s+/g, ' ').trim())
     highlight: string;
 }

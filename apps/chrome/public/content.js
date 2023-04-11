@@ -22,16 +22,15 @@ async function doHighlight() {
 
     const bodyElement = document.getElementsByTagName('body')[0];
 
-    const markInstance = new Mark(bodyElement);
-    const options = {
-        acrossElements: true,
-        separateWordSearch: false,
-        // caseSensitive: true,
-        diacritics: false,
-        // accuracy: 'exactly',
-    };
-
     for (const highlight of highlights) {
+        const markInstance = new Mark(bodyElement);
+        const options = {
+            acrossElements: true,
+            separateWordSearch: false,
+            // caseSensitive: true,
+            diacritics: false,
+            // accuracy: 'exactly',
+        };
         markInstance.mark(highlight, options);
     }
 }
