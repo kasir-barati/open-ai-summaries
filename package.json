@@ -8,9 +8,8 @@
     "main": "index.js",
     "scripts": {
         "lint": "pnpm run '/^lint:.*/'",
-        "lint:ts": "npx eslint --ext '**/*.{ts,tsx}'",
-        "lint:chrome": "tsc --project apps/chrome/tsconfig.json",
-        "lint:backend": "tsc --project apps/backend/tsconfig.json",
+        "lint:chrome": "pnpm tsc --build apps/chrome/tsconfig.json",
+        "lint:backend": "pnpm tsc --build apps/backend/tsconfig.json",
         "format": "prettier -w . -u",
         "format:check": "prettier . -c",
         "test": "pnpm run '/^test:*/'",
