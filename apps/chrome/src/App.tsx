@@ -10,6 +10,7 @@ import {
 import { useStore } from '@nanostores/react';
 import './App.css';
 import { AppStore } from './App.store';
+import { CreateSummary } from './components/CreateSummary/CreateSummary.component';
 import { Notification } from './components/Notification/Notification.component';
 import { Summaries } from './components/Summaries/Summaries.component';
 import { ExtensionStatus } from './components/ToggleState/ExtensionStatus.component';
@@ -49,6 +50,7 @@ function App() {
                     </DialogActions>
                 </Dialog>
                 <Summaries />
+                <CreateSummary />
                 <Notification />
             </Box>
         </>
