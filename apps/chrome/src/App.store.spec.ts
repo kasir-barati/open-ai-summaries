@@ -1,4 +1,5 @@
 import { allTasks, cleanStores, keepMount } from 'nanostores';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { AppStore } from './App.store';
 
 describe('AppStore', () => {

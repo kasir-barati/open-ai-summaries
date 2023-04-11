@@ -5,7 +5,7 @@ import { Summary as SharedSummaryType } from 'shared/types/summary';
 import { Summary, SummaryDocument } from './entities/summary.entity';
 
 @Injectable()
-export class RepositoryService {
+export class SummaryRepository {
     constructor(
         @InjectModel(Summary.name)
         private summaryModel: Model<SummaryDocument>,
@@ -15,5 +15,9 @@ export class RepositoryService {
         return this.summaryModel.create({
             ...summary,
         });
+    }
+
+    findAll() {
+        return this.summaryModel.find();
     }
 }

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
@@ -24,6 +24,6 @@ import webAppConfig from './configs/web-app.config';
         SummaryModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService, Logger],
 })
 export class AppModule {}

@@ -3,3 +3,5 @@ export interface Summary {
     highlight: string;
     summary: string;
 }
+
+export const ENDPOINT = 'summaries';

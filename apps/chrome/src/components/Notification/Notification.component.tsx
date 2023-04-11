@@ -12,7 +12,7 @@ export function Notification() {
     const { actions, states } = NotificationStateStore;
     const notificationState = useStore(states.notification);
     const handleClose = (
-        event: Event | React.SyntheticEvent<any, Event>,
+        _event: Event | React.SyntheticEvent<any, Event>,
         reason?: SnackbarCloseReason,
     ) => {
         if (reason === 'clickaway') {

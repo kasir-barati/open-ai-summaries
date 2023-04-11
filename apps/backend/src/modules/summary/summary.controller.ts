@@ -7,11 +7,12 @@ import {
     Patch,
     Post,
 } from '@nestjs/common';
+import { ENDPOINT } from 'shared/types/summary';
 import { CreateSummaryDto } from './dto/create-summary.dto';
 import { UpdateSummaryDto } from './dto/update-summary.dto';
 import { SummaryService } from './summary.service';
 
-@Controller('summaries')
+@Controller(ENDPOINT)
 export class SummaryController {
     constructor(private readonly summaryService: SummaryService) {}
 

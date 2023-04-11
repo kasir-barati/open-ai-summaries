@@ -1,8 +1,15 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
 import { allTasks, cleanStores, keepMount } from 'nanostores';
-import { vi } from 'vitest';
-import summaries from './summaries.dummy-data.json';
+import {
+    afterEach,
+    beforeEach,
+    describe,
+    expect,
+    it,
+    vi,
+} from 'vitest';
 import { SummariesStateStore } from './Summaries.store';
+import summaries from './summaries.dummy-data.json';
 
 describe('SummariesStateStore', () => {
     const { states, actions } = SummariesStateStore;

@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { OpenaiWrapperModule } from '../openai-wrapper/openai-wrapper.module';
 import { Summary, SummarySchema } from './entities/summary.entity';
-import { RepositoryService } from './repository.service';
 import { SummaryController } from './summary.controller';
+import { SummaryRepository } from './summary.repository';
 import { SummaryService } from './summary.service';
 
 @Module({
@@ -13,8 +14,10 @@ import { SummaryService } from './summary.service';
                 schema: SummarySchema,
             },
         ]),
+        OpenaiWrapperModule,
     ],
     controllers: [SummaryController],
-    providers: [SummaryService, RepositoryService],
+    providers: [SummaryService, SummaryRepository],
+    exports: [SummaryService],
 })
 export class SummaryModule {}

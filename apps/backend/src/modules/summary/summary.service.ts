@@ -1,18 +1,23 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { OpenaiWrapperService } from '../openai-wrapper/openai-wrapper.service';
 import { CreateSummaryDto } from './dto/create-summary.dto';
 import { UpdateSummaryDto } from './dto/update-summary.dto';
-import { RepositoryService } from './repository.service';
+import { SummaryRepository } from './summary.repository';
 
 @Injectable()
 export class SummaryService {
     constructor(
-        @Inject() private repositoryService: RepositoryService,
+        private summaryRepository: SummaryRepository,
+        private openaiWrapperService: OpenaiWrapperService,
     ) {}
 
     async create(createSummaryDto: CreateSummaryDto) {
         const { highlight } = createSummaryDto;
-        const summary = `Do ajax call to open ai with ${highlight}`;
-        const summaryDocument = await this.repositoryService.create({
+        const summary =
+            await this.openaiWrapperService.generateSummaryForHighlight(
+                highlight,
+            );
+        const summaryDocument = await this.summaryRepository.create({
             highlight,
             summary,
         });
@@ -21,7 +26,7 @@ export class SummaryService {
     }
 
     findAll() {
-        return `This action returns all summary`;
+        return this.summaryRepository.findAll();
     }
 
     findOne(id: number) {
@@ -29,7 +34,7 @@ export class SummaryService {
     }
 
     update(id: number, updateSummaryDto: UpdateSummaryDto) {
-        return `This action updates a #${id} summary`;
+        return `This action updates a #${id} summary ${updateSummaryDto}`;
     }
 
     remove(id: number) {

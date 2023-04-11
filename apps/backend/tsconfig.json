@@ -4,7 +4,11 @@
         "module": "commonjs",
         "target": "es2017",
         "outDir": "./dist",
-        "baseUrl": "./"
+        "baseUrl": "./",
+        "paths": {
+            "shared/*": ["../../shared/*"]
+        }
     },
+    "references": [{ "path": "../../shared" }],
     "exclude": ["node_modules", "./dist"]
 }

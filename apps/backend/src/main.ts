@@ -1,5 +1,6 @@
+import { Logger } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { NestApplication, NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
 import { json } from 'express';
@@ -10,9 +11,9 @@ import helmetConfig from './app/configs/helmet.config';
 import webAppConfig from './app/configs/web-app.config';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, {
-        bufferLogs: true,
-    });
+    let swaggerUrl: string;
+    const app = await NestFactory.create(AppModule, {});
+    const logger = app.get(Logger);
 
     app.setGlobalPrefix('api/v1');
     app.use(json({ limit: '20mb' }));
@@ -34,18 +35,12 @@ async function bootstrap() {
     if (process.env.SWAGGER_PATH) {
         // initialize Swagger using the SwaggerModule class
         const documentBuilderConfig = new DocumentBuilder()
-            .setTitle('Headless weblog')
+            .setTitle('Open AI Summaries')
             .setDescription(
-                'The Headless RESTful API implemented in Prisma and NestJS',
+                'The RESTful API implemented with NestJS and Open AI RESTful API',
             )
             .setVersion('1.0')
-            .addTag('weblog')
-            .addBearerAuth({
-                type: 'http',
-                scheme: 'bearer',
-                bearerFormat: 'JWT',
-                in: 'header',
-            })
+            .addTag('open-ai-summaries')
             .build();
         const swaggerDocument = SwaggerModule.createDocument(
             app,
@@ -57,8 +52,17 @@ async function bootstrap() {
             app,
             swaggerDocument,
         );
+        swaggerUrl = `${webAppConfigs.host}:${webAppConfigs.port}${webAppConfigs.swaggerPath}`;
     }
 
     await app.listen(webAppConfigs.port);
+    logger.log(
+        `See Swagger or App on: ${
+            swaggerUrl
+                ? swaggerUrl
+                : `${webAppConfigs.host}:${webAppConfigs.port}`
+        }`,
+        NestApplication.name,
+    );
 }
 bootstrap();

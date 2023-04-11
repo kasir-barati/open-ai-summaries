@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { action, atom } from 'nanostores';
-import { Summary } from 'shared/types/summary';
+import { ENDPOINT, Summary } from 'shared/types/summary';
 
 const summaries = atom<Summary[]>([]);
 const accordionIndex = atom<number | undefined>();
@@ -15,7 +15,7 @@ const fetchSummaries = action(
     summaries,
     'fetchSummaries',
     async (state, axiosInstance: AxiosInstance) => {
-        const response = await axiosInstance.get('/summaries');
+        const response = await axiosInstance.get(`/${ENDPOINT}`);
 
         state.set(response.data);
     },

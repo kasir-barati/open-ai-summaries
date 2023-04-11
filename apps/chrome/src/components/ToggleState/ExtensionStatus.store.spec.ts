@@ -1,4 +1,5 @@
 import { allTasks, cleanStores, keepMount } from 'nanostores';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ExtensionStateStore } from './ExtensionStatus.store';
 
 describe('ExtensionStateStore', () => {

@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:4.4.14-rc0-focal
+    container_name: mongodb
+    hostname: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_volume:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    restart: always
+
+volumes:
+  mongodb_volume:
