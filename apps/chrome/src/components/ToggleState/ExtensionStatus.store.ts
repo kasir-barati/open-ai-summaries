@@ -1,18 +1,24 @@
-import { action, atom } from 'nanostores';
+import { persistentAtom } from '@nanostores/persistent';
+import { action } from 'nanostores';
 
-const extensionStatus = atom<boolean>(false);
+export type ExtensionState = 'on' | 'off';
+
+const extensionStatus = persistentAtom<ExtensionState>(
+    'extensionStatus',
+    'off',
+);
 const enableExtension = action(
     extensionStatus,
     'enableExtension',
     (store) => {
-        store.set(true);
+        store.set('on');
     },
 );
 const disableExtension = action(
     extensionStatus,
     'disableExtension',
     (store) => {
-        store.set(false);
+        store.set('off');
     },
 );
 

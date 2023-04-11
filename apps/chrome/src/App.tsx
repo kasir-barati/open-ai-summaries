@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     CssBaseline,
     Dialog,
@@ -7,7 +8,6 @@ import {
     DialogTitle,
 } from '@mui/material';
 import { useStore } from '@nanostores/react';
-import { useEffect } from 'react';
 import './App.css';
 import { AppStore } from './App.store';
 import { Notification } from './components/Notification/Notification.component';
@@ -20,31 +20,37 @@ function App() {
     const handleCloseDialog = () => {
         actions.closeDialog();
     };
-
-    useEffect(() => {
+    const handleClickOpen = () => {
         actions.openDialog();
-    }, []);
+    };
 
     return (
         <>
             <CssBaseline />
-            <Dialog
-                open={toggleDialog}
-                scroll="paper"
-                fullWidth={true}
-            >
-                <DialogTitle id="scroll-dialog-title">
-                    Open AI Summaries
-                </DialogTitle>
-                <DialogContent dividers={true}>
-                    <ExtensionStatus />
-                    <Summaries />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleCloseDialog}>Close</Button>
-                </DialogActions>
-            </Dialog>
-            <Notification />
+            <Box padding={1}>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Activate or Deactivate extension
+                </Button>
+                <Dialog
+                    open={toggleDialog}
+                    scroll="paper"
+                    fullWidth={true}
+                >
+                    <DialogTitle id="scroll-dialog-title">
+                        Open AI Summaries
+                    </DialogTitle>
+                    <DialogContent dividers={true}>
+                        <ExtensionStatus />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseDialog}>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Summaries />
+                <Notification />
+            </Box>
         </>
     );
 }

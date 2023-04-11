@@ -19,7 +19,7 @@ export function ExtensionStatus() {
                 control={
                     <Switch
                         size="medium"
-                        checked={extensionStatus}
+                        checked={extensionStatus === 'on'}
                         color="warning"
                         onChange={handleChange}
                     />
