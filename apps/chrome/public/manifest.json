@@ -9,5 +9,11 @@
         "matches": ["<all_urls>"],
         "service_worker": "background.js"
     },
-    "permissions": ["contextMenus", "tabs", "scripting", "activeTab"]
+    "permissions": ["contextMenus", "tabs", "scripting", "activeTab"],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["mark.js", "content.js"]
+        }
+    ]
 }

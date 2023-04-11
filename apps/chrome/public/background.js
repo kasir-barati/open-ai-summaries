@@ -1,31 +1,42 @@
-chrome.contextMenus.create({
-    id: 'summaryCreator',
-    title: 'Create Summary',
-    contexts: ['all'],
+const BACKEND_URL = 'http://localhost:5000/api/v1/summaries';
+
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.contextMenus.create({
+        id: 'summaryCreator',
+        title: 'Create Summary',
+        contexts: ['all'],
+    });
+
+    chrome.contextMenus.onClicked.addListener(async () => {
+        const tab = await getCurrentTab();
+        const highlightedText = (
+            await chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                function: () => getSelection().toString(),
+            })
+        )[0].result;
+
+        // Sent the req here, UGLY
+        await fetch(BACKEND_URL, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                highlight: highlightedText,
+            }),
+        });
+    });
 });
 
-chrome.contextMenus.onClicked.addListener(async () => {
+async function getCurrentTab() {
+    // `tab` will either be a `tabs.Tab` instance or `undefined`.
     const [tab] = await chrome.tabs.query({
         active: true,
-        currentWindow: true,
+        lastFocusedWindow: true,
     });
-    const highlightedText = (
-        await chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            function: () => getSelection().toString(),
-        })
-    )[0].result;
 
-    // Sent the req here, UGLY
-    await fetch('http://localhost:5000/api/v1/summaries', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            highlight: highlightedText,
-        }),
-    });
-});
+    return tab;
+}

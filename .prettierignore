@@ -6,6 +6,7 @@ Docker*
 # Angular app specific
 .angular
 
+mark.js
 **/dist/
 **/build/
 **/build_keycloak/
