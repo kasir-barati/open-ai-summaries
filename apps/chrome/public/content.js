@@ -17,9 +17,7 @@ async function doHighlight() {
         throw new Error('Could not fetch highlights from backend');
     }
 
-    let highlights = await response.json();
-    highlights = highlights.map(({ highlight }) => highlight);
-
+    const highlights = await response.json();
     const bodyElement = document.getElementsByTagName('body')[0];
 
     for (const highlight of highlights) {
@@ -30,7 +28,10 @@ async function doHighlight() {
             // caseSensitive: true,
             diacritics: false,
             // accuracy: 'exactly',
+            each: (element) => {
+                element.setAttribute('title', highlight.summary);
+            },
         };
-        markInstance.mark(highlight, options);
+        markInstance.mark(highlight.highlight, options);
     }
 }
