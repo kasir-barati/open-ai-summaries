@@ -9,15 +9,23 @@ chrome.contextMenus.onClicked.addListener(async () => {
         active: true,
         currentWindow: true,
     });
-    const selectedText = (
+    const highlightedText = (
         await chrome.scripting.executeScript({
             target: { tabId: tab.id },
             function: () => getSelection().toString(),
         })
     )[0].result;
 
-    await chrome.tabs.sendMessage(tab.id, {
-        type: 'createSummary',
-        highlight: selectedText,
+    // Sent the req here, UGLY
+    await fetch('http://localhost:5000/api/v1/summaries', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            highlight: highlightedText,
+        }),
     });
 });

@@ -99,6 +99,7 @@ importers:
       '@mui/material': ^5.11.16
       '@nanostores/persistent': ^0.7.0
       '@nanostores/react': ^0.4.1
+      '@types/chrome': ^0.0.229
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
       '@vitejs/plugin-react': ^3.1.0
@@ -123,6 +124,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
+      '@types/chrome': 0.0.229
       '@types/react': 18.0.33
       '@types/react-dom': 18.0.11
       '@vitejs/plugin-react': 3.1.0_vite@4.2.1
@@ -1956,6 +1958,13 @@ packages:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
     dev: true
 
+  /@types/chrome/0.0.229:
+    resolution: {integrity: sha512-4dg80wr/0AxRiDxqQzHLRtiEbzYCipBpQFUGpuBfsSoIYuLMm0xH11gHc/uvNwoWDXKUsLFn8GLiYdAjt09RPQ==}
+    dependencies:
+      '@types/filesystem': 0.0.32
+      '@types/har-format': 1.2.10
+    dev: true
+
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
@@ -2001,10 +2010,24 @@ packages:
       '@types/serve-static': 1.15.1
     dev: true
 
+  /@types/filesystem/0.0.32:
+    resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
+    dependencies:
+      '@types/filewriter': 0.0.29
+    dev: true
+
+  /@types/filewriter/0.0.29:
+    resolution: {integrity: sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==}
+    dev: true
+
   /@types/graceful-fs/4.1.6:
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
     dependencies:
       '@types/node': 18.15.11
+    dev: true
+
+  /@types/har-format/1.2.10:
+    resolution: {integrity: sha512-o0J30wqycjF5miWDKYKKzzOU1ZTLuA42HZ4HE7/zqTOc/jTLdQ5NhYWvsRQo45Nfi1KHoRdNhteSI4BAxTF1Pg==}
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:

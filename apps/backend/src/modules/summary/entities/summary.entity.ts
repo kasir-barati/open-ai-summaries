@@ -27,7 +27,7 @@ export class Summary implements SharedSummaryType {
     // What should I put here, Should I even put it here, I am talking about the logic of fetching user data from keycloak and adding it to the Summary data
     // User?: any;
 
-    @Prop({ maxlength: 200, minlength: 2 })
+    @Prop({ minlength: 2 })
     highlight: string;
 
     @Prop({ required: false })
