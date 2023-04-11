@@ -5,7 +5,7 @@ Utilized the OpenAI API, React, NestJS, and TypeScript to help users find key in
 # Run in dev env
 
 1. `pnpm i --frozen-lockfile`
-2. `pnpm build`
+2. `pnpm build:chrome`
 3. `pnpm start:backend`
 4. Open chrome and load the `apps/chrome/dist` as an unpacked extension
 
