@@ -17,7 +17,7 @@ chrome.runtime.onInstalled.addListener(() => {
         )[0].result;
 
         // Sent the req here, UGLY
-        await fetch(BACKEND_URL, {
+        const temp = await fetch(BACKEND_URL, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -27,7 +27,9 @@ chrome.runtime.onInstalled.addListener(() => {
             body: JSON.stringify({
                 highlight: highlightedText,
             }),
-        });
+        }).catch(console.error);
+
+        console.log(temp);
     });
 });
 

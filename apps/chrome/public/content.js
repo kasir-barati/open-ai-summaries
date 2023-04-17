@@ -32,6 +32,8 @@ async function doHighlight() {
                 element.setAttribute('title', highlight.summary);
             },
         };
-        markInstance.mark(highlight.highlight, options);
+        setTimeout(() => {
+            markInstance.mark(highlight.highlight, options);
+        }, 1000);
     }
 }
